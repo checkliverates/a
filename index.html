@@ -15,7 +15,7 @@ button{width:100%;padding:14px;border:none;border-radius:12px;background:#1976d2
 <div class="container">
 <div class="header">
 <h2 id="date"></h2>
-<div id="group" style="font-size:20px;font-weight:bold"></div>
+<div id="group" style="display:none"></div>
 </div>
 <div class="card">
 <div class="row"><div class="label">💵 Cash</div><div class="value" id="cash">...</div></div>
@@ -26,7 +26,7 @@ button{width:100%;padding:14px;border:none;border-radius:12px;background:#1976d2
 <div id="refreshTime" style="margin-top:6px"></div>
 </div>
 <div style="margin-top:18px;padding:12px;background:#fff8e1;border-left:4px solid #ff9800;border-radius:8px;font-size:14px;line-height:1.5;color:#555;">
-<b>Note:</b> For volume discounts, please contact us. For orders above <b>55,000</b>, we will do our best to work out the most favorable deal for you.
+<b>Note:</b> For volume discounts, please contact us. For orders above <b><span id="groupValue">...</span></b>, we will do our best to work out the most favorable deal for you.
 </div>
 </div></div>
 <script>
@@ -45,7 +45,9 @@ async function loadRate(show){
  try{
   const r=await fetch(API+"?key="+encodeURIComponent(key));
   const d=await r.json();
-  document.getElementById("group").textContent="("+d.group+")";
+  document.getElementById("group").textContent = d.group;
+  document.getElementById("groupValue").textContent = d.group;
+     
   document.getElementById("cash").textContent=d.cash;
   document.getElementById("wire").textContent=d.wire;
   if(show){
