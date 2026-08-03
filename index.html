@@ -46,7 +46,6 @@ async function loadRate(show){
   const r=await fetch(API+"?key="+encodeURIComponent(key));
   const d=await r.json();
   document.getElementById("group").textContent = d.group;
-  document.getElementById("groupValue").textContent = d.group;
      
   document.getElementById("cash").textContent=d.cash;
   document.getElementById("wire").textContent=d.wire;
