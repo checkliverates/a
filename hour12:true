@@ -15,6 +15,7 @@ button{width:100%;padding:14px;border:none;border-radius:12px;background:#1976d2
 <div class="container">
 <div class="header">
 <h2 id="date"></h2>
+<div id="time" style="margin-top:4px;font-size:16px;font-weight:bold;">🕒 7:33:16 PM HKT</div>    
 <div id="group" style="display:none"></div>
 </div>
 <div class="card">
@@ -39,6 +40,18 @@ const hkDate = new Date().toLocaleDateString("en-GB",{
     year:"numeric"
 });
 document.getElementById("date").textContent = "📅 " + hkDate;
+function updateHKTime(){
+ const hkTime = new Date().toLocaleTimeString("en-US",{
+  timeZone:"Asia/Hong_Kong",
+  hour:"numeric",
+  minute:"2-digit",
+  second:"2-digit",
+  hour12:true
+ });
+ document.getElementById("time").textContent = "🕒 " + hkTime + " HKT";
+}
+updateHKTime();
+setInterval(updateHKTime,1000);
 async function loadRate(show){
  const btn=document.getElementById("refreshBtn");
  btn.disabled=true;btn.textContent="⏳ Refreshing...";
